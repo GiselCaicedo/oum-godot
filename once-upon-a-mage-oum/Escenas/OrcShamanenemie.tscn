@@ -92,6 +92,8 @@ size = Vector2(25, 27)
 [sub_resource type="CircleShape2D" id="CircleShape2D_3osbh"]
 
 [node name="Enemie" type="CharacterBody2D"]
+collision_layer = 16
+collision_mask = 15
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

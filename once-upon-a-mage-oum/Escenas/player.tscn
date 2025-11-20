@@ -1,6 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://c7c1uhxlmqlj1"]
+[gd_scene load_steps=19 format=3 uid="uid://c7c1uhxlmqlj1"]
 
 [ext_resource type="Texture2D" uid="uid://nhm1t3210uef" path="res://CharacterAssets/Mage32x32.png" id="1_718yp"]
+[ext_resource type="Script" uid="uid://dexj6dvu3h3fp" path="res://Escenas/player.gd" id="1_qgqwx"]
 [ext_resource type="Texture2D" uid="uid://b2lnki2w4r40k" path="res://CharacterAssets/Mage32x32_Run.png" id="2_36gag"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u8v0d"]
@@ -86,7 +87,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_n00s2")
 }],
 "loop": true,
-"name": &"default",
+"name": &"Idle",
 "speed": 5.0
 }, {
 "frames": [{
@@ -103,7 +104,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_xyal8")
 }],
 "loop": true,
-"name": &"run",
+"name": &"Run",
 "speed": 5.0
 }]
 
@@ -111,12 +112,15 @@ animations = [{
 size = Vector2(9, 16)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+collision_mask = 63
+script = ExtResource("1_qgqwx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_6e7ut")
-autoplay = "default"
+animation = &"Idle"
+autoplay = "Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 0)
