@@ -2,6 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://dgxy2k7peqhso" path="res://CharacterAssets/Orc - Shaman/Idle/Idle-Sheet.png" id="1_3osbh"]
 [ext_resource type="Texture2D" uid="uid://cwutgu5ukye4t" path="res://CharacterAssets/Orc - Shaman/Run/Run-Sheet.png" id="2_xed0p"]
+[ext_resource type="Script" uid="uid://p1n8sf1v0ve9d" path="res://Escenas/enemy.gd" id="3_mqvfk"]
+[ext_resource type="Script" uid="uid://nk2qgas9qxgg" path="res://Escenas/enemy_health_bar.gd" id="4_2ha0l"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_voun8"]
 atlas = ExtResource("1_3osbh")
@@ -94,6 +96,8 @@ size = Vector2(25, 27)
 [node name="Enemie" type="CharacterBody2D"]
 collision_layer = 16
 collision_mask = 15
+script = ExtResource("3_mqvfk")
+max_health = 60.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -111,3 +115,9 @@ shape = SubResource("RectangleShape2D_i3nsm")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 scale = Vector2(9.600001, 9.600001)
 shape = SubResource("CircleShape2D_3osbh")
+
+[node name="HealthBar" type="TextureRect" parent="."]
+position = Vector2(0, -40)
+stretch_mode = 2
+z_index = 5
+script = ExtResource("4_2ha0l")

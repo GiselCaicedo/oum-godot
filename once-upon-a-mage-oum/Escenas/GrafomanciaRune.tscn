@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2as3q6t7qn1b"]
+
+[ext_resource type="Script" uid="uid://yxgnoe7jw3xb7" path="res://Escenas/grafomancia_rune.gd" id="1_ax8s9"]
+[ext_resource type="Texture2D" uid="uid://6025tpl8v886" path="res://MagicAssets/Fire Sprite.png" id="2_p5hxn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ll6gd"]
+radius = 32.0
+
+[node name="GrafomanciaRune" type="Area2D"]
+collision_layer = 8
+collision_mask = 16
+script = ExtResource("1_ax8s9")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ll6gd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_p5hxn")
+modulate = Color(0.5, 0.2, 0.9, 0.7)
+scale = Vector2(0.6, 0.6)

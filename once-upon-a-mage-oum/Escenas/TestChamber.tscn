@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=4 uid="uid://bpnb8n830rymb"]
+[gd_scene load_steps=9 format=4 uid="uid://bpnb8n830rymb"]
 
 [ext_resource type="Texture2D" uid="uid://423xj0tkaoex" path="res://Escenarios/Environment/Tilesets/Floors_Tiles.png" id="1_ssw26"]
 [ext_resource type="Texture2D" uid="uid://iex75fwnui5b" path="res://Escenarios/P_P_FREE_RPG_TILESET/Dungeon_24x24.png" id="2_t5llm"]
 [ext_resource type="PackedScene" uid="uid://c7c1uhxlmqlj1" path="res://Escenas/player.tscn" id="3_angw5"]
 [ext_resource type="PackedScene" uid="uid://bowy6e5g6kf0g" path="res://Escenas/OrcShamanenemie.tscn" id="4_wuda4"]
+[ext_resource type="PackedScene" uid="uid://9huds0r7tsp" path="res://Escenas/HUD.tscn" id="5_ri6nc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4v6ea"]
 texture = ExtResource("1_ssw26")
@@ -580,3 +581,5 @@ scale = Vector2(2, 2)
 
 [node name="Enemie" parent="." instance=ExtResource("4_wuda4")]
 position = Vector2(410, 251)
+
+[node name="HUD" parent="." instance=ExtResource("5_ri6nc")]

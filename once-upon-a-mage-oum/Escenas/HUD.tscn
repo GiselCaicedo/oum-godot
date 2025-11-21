@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=3 uid="uid://hud"]
+
+[ext_resource type="Script" uid="uid://rq082f7u5cta" path="res://Escenas/hud.gd" id="1_ashud"]
+[ext_resource type="Texture2D" uid="uid://ckldontuomp50" path="res://MagicAssets/Interface/Kit/Base/Life Bar Animated 1.png" id="2_healthfill"]
+[ext_resource type="Texture2D" uid="uid://diiko4pkevari" path="res://MagicAssets/Interface/Kit/Base/Power Bar Animated 1.png" id="4_manafill"]
+
+[node name="HUD" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_ashud")
+
+[node name="HealthContainer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 18.0
+offset_top = 40.0
+offset_right = 18.0
+offset_bottom = 40.0
+scale = Vector2(4.034534, 3.0371027)
+size_flags_horizontal = 3
+
+[node name="HealthFill" type="TextureRect" parent="HealthContainer"]
+z_index = 1
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("2_healthfill")
+stretch_mode = 2
+
+[node name="ManaContainer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 17.0
+offset_top = 83.0
+offset_right = 17.0
+offset_bottom = 83.0
+scale = Vector2(1.0632489, 1.1694195)
+size_flags_horizontal = 3
+
+[node name="ManaFill" type="TextureRect" parent="ManaContainer"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.8810265
+offset_top = -2.5653744
+offset_right = 64.88103
+offset_bottom = 7.4346256
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3.7599993, 2.8000007)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("4_manafill")
+stretch_mode = 2
