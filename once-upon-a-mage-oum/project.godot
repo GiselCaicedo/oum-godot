@@ -68,6 +68,7 @@ Grafomancia_Attack={
 2d_physics/layer_4="Magic/Attacks"
 2d_physics/layer_5="Enemies"
 2d_physics/layer_6="Collectibles"
+2d_physics/layer_7="Hazards/Voids"
 
 [rendering]
 

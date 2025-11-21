@@ -109,19 +109,19 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gk3w3"]
-size = Vector2(9, 16)
+size = Vector2(5, 8)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
-groups = ["Player"]
 collision_mask = 63
 script = ExtResource("1_qgqwx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_6e7ut")
-animation = &"Idle"
+animation = &"Run"
 autoplay = "Idle"
+frame_progress = 0.6710918
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 0)
@@ -129,4 +129,4 @@ shape = SubResource("RectangleShape2D_gk3w3")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 scale = Vector2(-0.64364475, 0.1257048)
-zoom = Vector2(3, 3)
+zoom = Vector2(5, 5)
