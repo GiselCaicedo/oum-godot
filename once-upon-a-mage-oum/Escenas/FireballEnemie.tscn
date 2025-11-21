@@ -1,0 +1,222 @@
+[gd_scene load_steps=23 format=3 uid="uid://bg1wh6g0rba7y"]
+
+[ext_resource type="Texture2D" uid="uid://b5eoukxhdh3va" path="res://MagicAssets/Firball Launch-sheet.png" id="2_x1qyw"]
+[ext_resource type="Texture2D" uid="uid://cfufl08gr5vv7" path="res://MagicAssets/Fire Sprite.png" id="3_0tduo"]
+
+[sub_resource type="GDScript" id="GDScript_b3ukg"]
+script/source = "extends Area2D
+
+@onready var sprite = $AnimatedSprite2D
+
+# Configuración por defecto
+var velocidad = 400.0
+var tiempo_espera = 1.0
+
+# Estado
+var se_esta_moviendo = false
+var direccion_disparo = Vector2.ZERO
+var objetivo_final = Vector2.ZERO
+
+func _ready():
+	body_entered.connect(_on_body_entered)
+	# No iniciamos nada automáticamente. Esperamos a \"setup()\".
+
+# --- ESTA ES LA FUNCIÓN MÁGICA ---
+func setup(posicion_objetivo: Vector2, capa_a_golpear: int):
+	# 1. Guardamos el destino
+	objetivo_final = posicion_objetivo
+	
+	# 2. Configuramos a quién golpea (La Máscara)
+	# Primero limpiamos las máscaras anteriores para evitar errores
+	collision_mask = 0 
+	
+	# Activamos la capa de colisión del OBJETIVO (Ej: 3 para Enemigos, 1 para Player)
+	set_collision_mask_value(capa_a_golpear, true)
+	
+	# Activamos SIEMPRE la colisión con el mundo (Digamos que paredes es capa 2 o TileMap)
+	# Ajusta este número según donde tengas tus paredes
+	set_collision_mask_value(2, true) 
+	
+	# 3. Iniciamos la lógica
+	iniciar_secuencia()
+
+func iniciar_secuencia():
+	sprite.play(\"Spelling\") # Animación de carga
+	
+	# Esperar tiempo de carga
+	await get_tree().create_timer(tiempo_espera).timeout
+	
+	# Calcular dirección final hacia el objetivo guardado
+	direccion_disparo = (objetivo_final - global_position).normalized()
+	rotation = direccion_disparo.angle()
+	
+	sprite.play(\"Launch\") # Animación de viaje
+	se_esta_moviendo = true
+
+func _physics_process(delta):
+	if se_esta_moviendo:
+		position += direccion_disparo * velocidad * delta
+
+func _on_body_entered(body):
+	# Si es Pared (TileMapLayer o lo que uses para el mundo)
+	if body is TileMapLayer: 
+		queue_free()
+		return
+
+	# Si chocó con algo que tiene la máscara correcta (Ya la filtramos en setup)
+	# Simplemente destruimos y (opcional) aplicamos daño
+	queue_free()
+	
+	# OPCIONAL: Sistema de daño genérico
+	if body.has_method(\"take_damage\"):
+		body.take_damage(10)"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2omxi"]
+atlas = ExtResource("2_x1qyw")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gati7"]
+atlas = ExtResource("2_x1qyw")
+region = Rect2(64, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rq34j"]
+atlas = ExtResource("2_x1qyw")
+region = Rect2(128, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_623u8"]
+atlas = ExtResource("2_x1qyw")
+region = Rect2(192, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cp5ld"]
+atlas = ExtResource("2_x1qyw")
+region = Rect2(256, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qpxal"]
+atlas = ExtResource("2_x1qyw")
+region = Rect2(320, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_si2xo"]
+atlas = ExtResource("3_0tduo")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_byoa1"]
+atlas = ExtResource("3_0tduo")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3d7au"]
+atlas = ExtResource("3_0tduo")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fdxi6"]
+atlas = ExtResource("3_0tduo")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8lfq0"]
+atlas = ExtResource("3_0tduo")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uju3a"]
+atlas = ExtResource("3_0tduo")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5nax"]
+atlas = ExtResource("3_0tduo")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hb4gc"]
+atlas = ExtResource("3_0tduo")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0mbk4"]
+atlas = ExtResource("3_0tduo")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1t2tn"]
+atlas = ExtResource("3_0tduo")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3bgll"]
+atlas = ExtResource("3_0tduo")
+region = Rect2(640, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hoscj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2omxi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gati7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rq34j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_623u8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cp5ld")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qpxal")
+}],
+"loop": true,
+"name": &"Launch",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_si2xo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_byoa1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3d7au")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fdxi6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8lfq0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uju3a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5nax")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hb4gc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0mbk4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1t2tn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3bgll")
+}],
+"loop": true,
+"name": &"Spelling",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3vbby"]
+radius = 29.0
+
+[node name="AreaFireball" type="Area2D"]
+collision_layer = 72
+collision_mask = 9
+script = SubResource("GDScript_b3ukg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_hoscj")
+animation = &"Launch"
+autoplay = "Spelling"
+frame_progress = 0.7795964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1, 0.52000034)
+shape = SubResource("CircleShape2D_3vbby")

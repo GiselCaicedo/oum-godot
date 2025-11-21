@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://bowy6e5g6kf0g"]
+[gd_scene load_steps=19 format=3 uid="uid://bowy6e5g6kf0g"]
 
 [ext_resource type="Texture2D" uid="uid://dgxy2k7peqhso" path="res://CharacterAssets/Orc - Shaman/Idle/Idle-Sheet.png" id="1_3osbh"]
+[ext_resource type="Script" uid="uid://plciyojy7086" path="res://Escenas/enemie.gd" id="1_xed0p"]
 [ext_resource type="Texture2D" uid="uid://cwutgu5ukye4t" path="res://CharacterAssets/Orc - Shaman/Run/Run-Sheet.png" id="2_xed0p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_voun8"]
@@ -82,7 +83,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_jk657")
 }],
 "loop": true,
-"name": &"new_animation",
+"name": &"Run",
 "speed": 5.0
 }]
 
@@ -91,23 +92,55 @@ size = Vector2(25, 27)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3osbh"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_xed0p"]
+radius = 207.93268
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_voun8"]
+radius = 8.0
+
 [node name="Enemie" type="CharacterBody2D"]
 collision_layer = 16
 collision_mask = 15
+script = ExtResource("1_xed0p")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_js3rw")
-animation = &"Idle"
+animation = &"Run"
 autoplay = "Idle"
-frame_progress = 0.4035269
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.5, 2.5)
 shape = SubResource("RectangleShape2D_i3nsm")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 3.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="Escape" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Escape"]
 scale = Vector2(9.600001, 9.600001)
 shape = SubResource("CircleShape2D_3osbh")
+debug_color = Color(0.9996806, 0, 0.11992704, 0.41960785)
+
+[node name="Launch" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Launch"]
+shape = SubResource("CircleShape2D_xed0p")
+debug_color = Color(0.212237, 0.6401403, 0, 0.41960785)
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="."]
+position = Vector2(1, 2)
+scale = Vector2(1.9335032, 1.9335032)
+shape = SubResource("CircleShape2D_voun8")
+target_position = Vector2(0, 0)
+collision_mask = 4
+
+[connection signal="body_entered" from="Escape" to="." method="_on_escape_body_entered"]
+[connection signal="body_exited" from="Escape" to="." method="_on_escape_body_exited"]
+[connection signal="body_entered" from="Launch" to="." method="_on_launch_body_entered"]
+[connection signal="body_exited" from="Launch" to="." method="_on_launch_body_exited"]

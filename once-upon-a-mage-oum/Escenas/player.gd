@@ -36,8 +36,6 @@ func _physics_process(_delta) -> void:
 func logoi_tecnia():
 	if Input.is_action_just_pressed("Logoitecnia_Attack"):
 		var inst = FIREBALL_SCENE.instantiate()
-		# A. Asignar posición de inicio (La misma del jugador)
 		inst.global_position = global_position
-		
-		inst.rotation = last_direction.angle()
 		get_parent().add_child(inst)
+		inst.setup(get_global_mouse_position(), 5)

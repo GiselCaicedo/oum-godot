@@ -111,7 +111,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gk3w3"]
 size = Vector2(9, 16)
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["Player"]]
 collision_mask = 63
 script = ExtResource("1_qgqwx")
 
@@ -128,4 +128,3 @@ shape = SubResource("RectangleShape2D_gk3w3")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 scale = Vector2(-0.64364475, 0.1257048)
-zoom = Vector2(3, 3)
