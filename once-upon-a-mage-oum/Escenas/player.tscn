@@ -119,12 +119,10 @@ script = ExtResource("1_qgqwx")
 texture_filter = 1
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_6e7ut")
-animation = &"Run"
+animation = &"Idle"
 autoplay = "Idle"
-frame_progress = 0.6710918
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_gk3w3")
 
 [node name="Camera2D" type="Camera2D" parent="."]
