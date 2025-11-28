@@ -80,6 +80,7 @@ func logoi_tecnia(mouse_click: bool) -> void:
 		return
 
 	if not can_use_mana(LOGOI_MANA_COST):
+		print("[Player] Logoitecnia denied: mana ", mana, " < ", LOGOI_MANA_COST)
 		return
 
 	var aim_direction := _compute_aim_direction()
@@ -90,6 +91,7 @@ func logoi_tecnia(mouse_click: bool) -> void:
 	var damage = base_attack_power + combo_counter * COMBO_BONUS
 	fireball.initialize(aim_direction, damage, self)
 	get_parent().add_child(fireball)
+	print("[Player] Logoitecnia cast -> damage ", damage, " mana before ", mana)
 	consume_mana(LOGOI_MANA_COST)
 	_register_combo()
 
@@ -98,12 +100,14 @@ func grafomancia() -> void:
 		return
 
 	if not can_use_mana(GRAFOMANCIA_MANA_COST):
+		print("[Player] Grafomancia denied: mana ", mana, " < ", GRAFOMANCIA_MANA_COST)
 		return
 
 	var rune = GRAFOMANCIA_RUNE.instantiate()
 	rune.global_position = global_position + last_direction * 32.0
 	rune.configure(base_attack_power * 1.4 + combo_counter * 2.0, self)
 	get_parent().add_child(rune)
+	print("[Player] Grafomancia cast -> damage ", base_attack_power * 1.4 + combo_counter * 2.0, " mana before ", mana)
 	consume_mana(GRAFOMANCIA_MANA_COST)
 	_register_combo()
 
@@ -112,6 +116,7 @@ func teurgia() -> void:
 		return
 
 	if health <= TEURGIA_HEALTH_COST + 2.0:
+		print("[Player] Teurgia denied: health ", health, " <= ", TEURGIA_HEALTH_COST + 2.0)
 		return
 
 	var fireball = FIREBALL_SCENE.instantiate()
@@ -119,7 +124,9 @@ func teurgia() -> void:
 	var bonus_damage = base_attack_power * TEURGIA_DAMAGE_MULT
 	fireball.initialize(last_direction, bonus_damage, self, 1.3)
 	get_parent().add_child(fireball)
+	print("[Player] Teurgia cast -> damage ", bonus_damage, " health before ", health)
 	health = clamp(health - TEURGIA_HEALTH_COST, 0.0, max_health)
+	print("[Player] Teurgia cost applied -> health now ", health, "/", max_health)
 	emit_signal("health_changed", health, max_health)
 	if health <= 0.0:
 		die()

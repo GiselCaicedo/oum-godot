@@ -27,6 +27,7 @@ func _ready():
 	mana_recharge_timer = 0.0
 	emit_signal("health_changed", health, max_health)
 	emit_signal("mana_changed", mana, max_mana)
+	print("[Combatant] initialized -> HP ", health, "/", max_health, " MP ", mana, "/", max_mana)
 
 func _physics_process(delta: float) -> void:
 	_combatant_physics_process(delta)
@@ -72,14 +73,17 @@ func _regenerate_mana_tick(delta: float) -> void:
 	mana = clamp(mana + MANA_RECHARGE_AMOUNT, 0.0, max_mana)
 	if mana != previous_mana:
 		emit_signal("mana_changed", mana, max_mana)
+		print("[Combatant] mana regenerated -> ", previous_mana, " -> ", mana)
 
 func can_use_mana(cost: float) -> bool:
 	return mana >= cost
 
 func consume_mana(cost: float) -> void:
+	var previous_mana := mana
 	mana = clamp(mana - cost, 0.0, max_mana)
 	mana_recharge_timer = 0.0
 	emit_signal("mana_changed", mana, max_mana)
+	print("[Combatant] mana consumed -> ", previous_mana, " -> ", mana, " (cost ", cost, ")")
 
 func take_damage(amount: float) -> float:
 	if amount <= 0.0 or invulnerable_timer > 0.0:
@@ -92,12 +96,15 @@ func take_damage(amount: float) -> float:
 	invulnerable_timer = INVUL_DURATION
 	emit_signal("health_changed", health, max_health)
 
+	print("[Combatant] took damage -> final ", final_damage, " (raw ", raw_damage, "), HP ", health, "/", max_health)
+
 	if health <= 0.0:
 		die()
 
 	return final_damage
 
 func die() -> void:
+	print("[Combatant] died")
 	if is_inside_tree():
 		queue_free()
 	emit_signal("died")

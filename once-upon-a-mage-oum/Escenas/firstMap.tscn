@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://c42xs0lp5o0py" path="res://Escenarios/Environment/Props/Static/Esoteric.png" id="7_o5uen"]
 [ext_resource type="Texture2D" uid="uid://u018syno5g2u" path="res://Escenarios/Environment/Props/Static/Vegetation.png" id="8_ui2ut"]
 [ext_resource type="PackedScene" uid="uid://c7c1uhxlmqlj1" path="res://Escenas/player.tscn" id="9_shsbf"]
+[ext_resource type="PackedScene" uid="uid://hud_firstmap" path="res://Escenas/HUD.tscn" id="10_hud"]
+[ext_resource type="PackedScene" uid="uid://bowy6e5g6kf0g" path="res://Escenas/OrcShamanenemie.tscn" id="11_wuda4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q1le4"]
 texture = ExtResource("4_5v3lc")
@@ -2963,3 +2965,8 @@ tile_set = SubResource("TileSet_nmscd")
 [node name="Player" parent="." instance=ExtResource("9_shsbf")]
 position = Vector2(80, -102)
 scale = Vector2(2, 2)
+
+[node name="Enemie" parent="." instance=ExtResource("11_wuda4")]
+position = Vector2(410, 251)
+
+[node name="HUD" parent="." instance=ExtResource("10_hud")]
