@@ -140,6 +140,7 @@ animations = [{
 radius = 29.0
 
 [node name="AreaFireball" type="Area2D"]
+scale = Vector2(0.5, 0.5)
 collision_layer = 8
 collision_mask = 28
 script = ExtResource("1_gati7")

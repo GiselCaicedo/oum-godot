@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://dyria1l0oj5vo"]
+[gd_scene load_steps=32 format=4 uid="uid://dyria1l0oj5vo"]
 
 [ext_resource type="Texture2D" uid="uid://b1q2vm40b2imy" path="res://Escenarios/Set 1.2.png" id="1_5dlgw"]
 [ext_resource type="Texture2D" uid="uid://b8mmaq76x1055" path="res://Escenarios/Set 4.5.png" id="2_shsbf"]
@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://c42xs0lp5o0py" path="res://Escenarios/Environment/Props/Static/Esoteric.png" id="7_o5uen"]
 [ext_resource type="Texture2D" uid="uid://u018syno5g2u" path="res://Escenarios/Environment/Props/Static/Vegetation.png" id="8_ui2ut"]
 [ext_resource type="PackedScene" uid="uid://c7c1uhxlmqlj1" path="res://Escenas/player.tscn" id="9_shsbf"]
-[ext_resource type="PackedScene" uid="uid://hud_firstmap" path="res://Escenas/HUD.tscn" id="10_hud"]
+[ext_resource type="PackedScene" uid="uid://hud" path="res://Escenas/HUD.tscn" id="10_hud"]
 [ext_resource type="PackedScene" uid="uid://bowy6e5g6kf0g" path="res://Escenas/OrcShamanenemie.tscn" id="11_wuda4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q1le4"]
@@ -2966,7 +2966,66 @@ tile_set = SubResource("TileSet_nmscd")
 position = Vector2(80, -102)
 scale = Vector2(2, 2)
 
-[node name="Enemie" parent="." instance=ExtResource("11_wuda4")]
-position = Vector2(410, 251)
-
 [node name="HUD" parent="." instance=ExtResource("10_hud")]
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Enemie" parent="Enemies" instance=ExtResource("11_wuda4")]
+position = Vector2(490, -144)
+scale = Vector2(0.25, 0.25)
+
+[node name="Enemie2" parent="Enemies" instance=ExtResource("11_wuda4")]
+position = Vector2(776, -29)
+scale = Vector2(0.25, 0.25)
+
+[node name="Enemie3" parent="Enemies" instance=ExtResource("11_wuda4")]
+position = Vector2(127, 210)
+scale = Vector2(0.25, 0.25)
+
+[node name="Enemie4" parent="Enemies" instance=ExtResource("11_wuda4")]
+position = Vector2(244, 303)
+scale = Vector2(0.25, 0.25)
+
+[node name="Enemie5" parent="Enemies" instance=ExtResource("11_wuda4")]
+position = Vector2(731, 242)
+scale = Vector2(0.25, 0.25)
+
+[node name="Enemie6" parent="Enemies" instance=ExtResource("11_wuda4")]
+position = Vector2(930, 418)
+scale = Vector2(0.25, 0.25)
+
+[node name="Enemie7" parent="Enemies" instance=ExtResource("11_wuda4")]
+position = Vector2(1259, 295)
+scale = Vector2(0.25, 0.25)
+
+[node name="Enemie8" parent="Enemies" instance=ExtResource("11_wuda4")]
+position = Vector2(1286, 387)
+scale = Vector2(0.25, 0.25)
+
+[node name="Enemie9" parent="Enemies" instance=ExtResource("11_wuda4")]
+position = Vector2(1258, 188)
+scale = Vector2(0.25, 0.25)
+
+[node name="Enemie10" parent="Enemies" instance=ExtResource("11_wuda4")]
+position = Vector2(473, 573)
+scale = Vector2(0.25, 0.25)
+
+[node name="Enemie11" parent="Enemies" instance=ExtResource("11_wuda4")]
+position = Vector2(216, 540)
+scale = Vector2(0.25, 0.25)
+
+[node name="Enemie12" parent="Enemies" instance=ExtResource("11_wuda4")]
+position = Vector2(69, 575)
+scale = Vector2(0.25, 0.25)
+
+[node name="Enemie13" parent="Enemies" instance=ExtResource("11_wuda4")]
+position = Vector2(920, 593)
+scale = Vector2(0.25, 0.25)
+
+[node name="Enemie14" parent="Enemies" instance=ExtResource("11_wuda4")]
+position = Vector2(711, 762)
+scale = Vector2(0.25, 0.25)
+
+[node name="Enemie15" parent="Enemies" instance=ExtResource("11_wuda4")]
+position = Vector2(1199, -136)
+scale = Vector2(0.25, 0.25)

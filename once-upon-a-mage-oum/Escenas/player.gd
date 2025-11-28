@@ -89,7 +89,7 @@ func logoi_tecnia(mouse_click: bool) -> void:
 	var fireball = FIREBALL_SCENE.instantiate()
 	fireball.global_position = global_position
 	var damage = base_attack_power + combo_counter * COMBO_BONUS
-	fireball.initialize(aim_direction, damage, self)
+	fireball.initialize(get_global_mouse_position(), damage, self, 5)
 	get_parent().add_child(fireball)
 	print("[Player] Logoitecnia cast -> damage ", damage, " mana before ", mana)
 	consume_mana(LOGOI_MANA_COST)
